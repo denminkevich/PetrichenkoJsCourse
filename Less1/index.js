@@ -1,3 +1,4 @@
+'use strict';
 const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?');
 
 const personalMovieDB = {
@@ -8,12 +9,27 @@ const personalMovieDB = {
     private: false
 };
 
-const lastMovie = prompt('Какой последний фильм вы смотрели?', '');
-const mark = prompt('Ваша оценка этому фильму?', '');
-const lastMovie2 = prompt('Какой последний фильм вы смотрели?', '');
-const mark2 = prompt('Ваша оценка этому фильму?', '');
+for (let i = 0; i < 2; i++) {
+    let lastMovie = prompt('Какой последний фильм вы смотрели?', ''),
+        mark = prompt('Ваша оценка этому фильму?', '');
+    if (lastMovie.length < 50 && lastMovie != '' && lastMovie != null && mark != '' && mark != null) {
+        personalMovieDB.movies[lastMovie] = mark;
+        console.log('Добавлен фильм');
+    } else {
+        console.log('Не добавлен!');
+        i--;
+    }
+    
+}
 
-personalMovieDB.movies[lastMovie] = mark;
-personalMovieDB.movies[lastMovie2] = mark2;
+if (personalMovieDB.count < 10) {
+    alert('Проосмотрено довольно мало фильмов');
+} else if (personalMovieDB.count < 30 && personalMovieDB.count >= 10){
+    alert('Вы классный зритель');
+} else if (personalMovieDB.count >= 30){
+    alert('Вы киноман');
+} else {
+    alert('Произошла ошибка');
+}
 
 console.log(personalMovieDB);
